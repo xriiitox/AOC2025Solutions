@@ -1,0 +1,10 @@
+{
+  "name": "aoc2025solutions",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

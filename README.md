@@ -1,0 +1,17 @@
+# aoc2025solutions
+
+My solutions to December 2025's *Advent of Code* event.
+
+To install dependencies:
+
+```bash
+bun install
+```
+
+To run:
+
+```bash
+bun run 
+```
+
+This project was created using `bun init` in bun v1.3.3. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
