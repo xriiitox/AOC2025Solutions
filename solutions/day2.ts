@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 
-const file: string = readFileSync('./inputs/input2.txt', 'utf-8');
+const file: string = readFileSync('../inputs/input2.txt', 'utf-8');
 
 const ids = file.split(',')
 
