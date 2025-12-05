@@ -1,6 +1,8 @@
 import {readFileSync} from 'fs';
 
 let file: string[] = readFileSync('../inputs/input4.txt', 'utf-8').split("\n");
+let grid: string[][] = []
+file.forEach(x => grid.push(x.split('')))
 
 function countNeighbors(i: number, j: number) {
     let count = 0;
@@ -15,7 +17,7 @@ function countNeighbors(i: number, j: number) {
         let dy = coord[1];
 
         try {
-            if (file[i + dx][j + dy] === "@") {
+            if (grid[i + dx][j + dy] === "@") {
                 count++;
             }
         } catch (e) {
@@ -28,8 +30,8 @@ function countNeighbors(i: number, j: number) {
 function part1() {
     let rolls = 0;
     for (let i = 0; i < file.length; i++) {
-        for (let j = 0; j < file[i].length; j++) {
-            if (file[i][j] !== "@") continue;
+        for (let j = 0; j < grid[i].length; j++) {
+            if (grid[i][j] !== "@") continue;
             if (countNeighbors(i,j) < 4) rolls++;
         }
     }
@@ -42,22 +44,21 @@ function part2() {
     do {
         hasModified = false;
         let removedInPass = 0;
-        let modifiedFile: string[] = JSON.parse(JSON.stringify(file))
-        for (let i = 0; i < file.length; i++) {
-            for (let j = 0; j < file[i].length; j++) {
-                if (file[i][j] === ".") continue;
+        let modifiedFile: string[][] = JSON.parse(JSON.stringify(grid))
+        for (let i = 0; i < grid.length; i++) {
+            for (let j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] === ".") continue;
                 if (countNeighbors(i, j) < 4) {
-                    let charArr = file[i].split('')
-                    charArr[j] = '.';
-                    modifiedFile[i] = charArr.join('')
+                    modifiedFile[i][j] = ".";
                     removedInPass++;
                     hasModified = true
                 }
             }
         }
         removedTotal += removedInPass;
-        file = JSON.parse(JSON.stringify(modifiedFile))
+        grid = JSON.parse(JSON.stringify(modifiedFile))
     } while (hasModified)
     return removedTotal
 }
+console.log(part1())
 console.log(part2())
